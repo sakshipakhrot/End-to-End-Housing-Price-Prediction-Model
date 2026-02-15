@@ -1,0 +1,10 @@
+venv/
+.venv/
+env/
+research/
+ENV/
+bin/
+lib/
+.vscode/
+__pycache__/
+*.pyc
