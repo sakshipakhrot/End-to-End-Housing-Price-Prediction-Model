@@ -12,9 +12,6 @@ def predict_datapoint():
     if request.method == 'GET':
         return render_template('home.html')
     else:
-        # 1. Capture all form data into a dictionary
-        # We use float() for almost everything to prevent the 'int' decimal error
-        # Inside your app.py predict_datapoint function:
         data_dict = {
             "city_full": request.form.get('city_full'),
             "zipcode": request.form.get('zipcode'),
@@ -55,17 +52,17 @@ def predict_datapoint():
             "Median Commute Time": float(request.form.get('commute_time'))
             }
 
-        # 2. Initialize CustomData with the dictionary
+        
         data = CustomData(**data_dict)
 
-        # 3. Convert to DataFrame
+        
         pred_df = data.get_data_as_data_frame()
 
-        # 4. Run Prediction Pipeline
+        
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
 
-        # 5. Return result to the UI (rounded for cleanliness)
+        
         return render_template('home.html', results=round(results[0], 2))
 
 if __name__ == "__main__":
